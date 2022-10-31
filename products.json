@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Juego De Tronos",
+    "price": 50,
+    "autor": "George R.R Martin",
+    "pages": 800,
+    "id": 1
+  },
+  {
+    "name": "Harry Potter",
+    "price": 40,
+    "autor": "j.k Rowling",
+    "pages": 250,
+    "id": 2
+  },
+  {
+    "name": "Juramentada",
+    "price": 35,
+    "autor": "Brandon Sanderson",
+    "pages": 1300,
+    "id": 3
+  },
+  {
+    "name": "Juramentada",
+    "price": 35,
+    "autor": "Brandon Sanderson",
+    "pages": 1300,
+    "id": 4
+  }
+]
