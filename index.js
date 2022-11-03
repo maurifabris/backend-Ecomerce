@@ -21,14 +21,14 @@ let Juramentada={
 }
 
 
-// contenedor.save(Juramentada).then((response)=>{
-//     console.log(response)
-// })
-
-
-contenedor.productoRamdom().then((Response)=>{
-    console.log(Response)
+contenedor.save(Juramentada).then((response)=>{
+    console.log(response)
 })
+
+
+// contenedor.productoRamdom().then((Response)=>{
+//     console.log(Response)
+// })
 
 // contenedor.getById(1).then((Response)=>{
 //     console.log(Response)
