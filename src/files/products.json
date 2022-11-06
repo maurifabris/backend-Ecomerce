@@ -26,5 +26,19 @@
     "autor": "Brandon Sanderson",
     "pages": 1300,
     "id": 4
+  },
+  {
+    "name": "Carlos Mauricio Fabris",
+    "autor": "Robert Jordan",
+    "pages": "3",
+    "price": "2",
+    "id": 5
+  },
+  {
+    "name": "El ojo del mundo",
+    "autor": "Robert Jordan",
+    "pages": "800",
+    "price": "90",
+    "id": 6
   }
 ]

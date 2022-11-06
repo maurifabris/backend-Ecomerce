@@ -1,15 +1,14 @@
 import express from 'express'
-import Contenedor from '../Contenedor.js'
-import productRaouter from './routes/products.router.js'
+import productsRouter from './routes/productsRouter.js'
 import __dirname from './utils.js'
 
-const contenedor = new Contenedor()
+
 const app = express()
 
 let list = []
-app.use(express.static(__dirname+"/public"))
+app.use(express.static(__dirname+'/public'))
 app.use(express.json())
-app.use('/api/producs', productRaouter);
+app.use('/api/products', productsRouter);
 
 app.listen(8080,()=>console.log('listen'))
 
