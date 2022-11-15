@@ -81,7 +81,7 @@ class Contenedor {
             }
         }
     }
-    deletById = async (id) => {
+    deleteById = async (id) => {
         if (!id) {
             return {
                 status: "error",
@@ -143,6 +143,45 @@ class Contenedor {
                     message: "Product not found"
                 }
             }
+        }
+    }
+    updateItem = async (object, id) => {
+        if (!id) {
+            return {
+                status: "Error",
+                message: "ID is required"
+            }
+        }
+        let products = await this.getAll()
+        try {
+            let arrayProducts = products.products.map(product => {
+                if (product.id == id) {
+                    return {
+                        name: object.name ? object.name : product.name,
+                        price: object.price ? object.price : product.price,
+                        image: object.image ? object.image : product.image,
+                        id: product.id
+                    }
+                } else {
+                    return product
+                }
+            })
+            let productUpdate = arrayProducts.find(product => product.id == id)
+            if (productUpdate) {
+                await fs.promises.writeFile(pathToFile, JSON.stringify(arrayProducts, null, 2))
+                return {
+                    status: "success",
+                    message: "successfully upgraded product",
+                    productNew: productUpdate
+                }
+            } else {
+                return {
+                    status: "error",
+                    message: "Product not found"
+                }
+            }
+        } catch {
+            return products
         }
     }}
 

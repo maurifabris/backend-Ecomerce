@@ -2,8 +2,6 @@
   {
     "name": "Juego De Tronos",
     "price": 50,
-    "autor": "George R.R Martin",
-    "pages": 800,
     "id": 1
   },
   {
@@ -18,27 +16,27 @@
     "price": 35,
     "autor": "Brandon Sanderson",
     "pages": 1300,
-    "id": 3
-  },
-  {
-    "name": "Juramentada",
-    "price": 35,
-    "autor": "Brandon Sanderson",
-    "pages": 1300,
     "id": 4
-  },
-  {
-    "name": "Carlos Mauricio Fabris",
-    "autor": "Robert Jordan",
-    "pages": "3",
-    "price": "2",
-    "id": 5
   },
   {
     "name": "El ojo del mundo",
     "autor": "Robert Jordan",
     "pages": "800",
     "price": "90",
+    "id": 6
+  },
+  {
+    "name": "La Gran Cacería",
+    "autor": "Robert Jordan",
+    "pages": "800",
+    "price": "800",
+    "id": 5
+  },
+  {
+    "name": "La Gran Cacería",
+    "autor": "Robert Jordan",
+    "pages": "800",
+    "price": "800",
     "id": 6
   }
 ]
