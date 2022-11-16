@@ -1,5 +1,5 @@
 import express from 'express'
-import productsRouter from './routes/productsRouter.js'
+import productsRouter from './routes/products.Router.js'
 import viewsRouter from "./routes/views.router.js"
 import __dirname from './utils.js'
 import handlebars from 'express-handlebars';
@@ -12,7 +12,7 @@ app.engine('handlebars', handlebars.engine())
 app.set('views',__dirname+"/views")
 app.set('view engine', 'handlebars')
 
-let list = []
+
 app.use(express.static(__dirname+'/public'))
 app.use(express.json())
 

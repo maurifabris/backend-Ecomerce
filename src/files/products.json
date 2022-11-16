@@ -38,5 +38,12 @@
     "pages": "800",
     "price": "800",
     "id": 6
+  },
+  {
+    "name": "El Despertar De Los Heroes",
+    "autor": "Robert Jordan",
+    "pages": "800",
+    "price": "800",
+    "id": 7
   }
 ]

@@ -5,14 +5,17 @@ import uploader from "../services/upload.js";
 const router = Router()
 const contenedor = new Contenedor()
 
-router.post('/',uploader.single('images') ,async(req,res)=>{
-    console.log(req.file);
-    let product = req.body;
-    const result  = await contenedor.save(product)
-    res.send(result)
-    console.log(req.body)
+router.post('/',async(req,res)=>{
+    const {name,autor,price,pages} = req.body;
+    const product = {
+        name,
+        autor,
+        price,
+        pages
+    }
+    let result = await contenedor.save(product);
+    res.send({status:"success",payload:result})
 })
-
 router.get('/items/:id', async (request, response) => {
     const id = request.params.id
     let result = await contenedor.getById(id)

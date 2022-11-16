@@ -1,9 +1,15 @@
 <div>
-    <h1>Estos son los productos</h1>
+    <h1>Hola {{name}}, aquí una lista de usuarios</h1>
+    <h1>{{products}}</h1>
+    <h1>{{products.name}}</h1>
     {{#each products}}
         <div>
             <p>{{this.name}}</p>
-
+            <p>{{this.price}}</p>
+            <p>{{this.autor}}</p>
+            <p>{{this.pages}}</p>
+            <br/>
+            <p>me ejecuto</p>
         </div>
     {{/each}}
 </div>
