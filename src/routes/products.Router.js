@@ -7,13 +7,13 @@ const contenedor = new Contenedor()
 
 router.post('/',async(req,res)=>{
     const {name,autor,price,pages} = req.body;
-    const product = {
+    const products = {
         name,
         autor,
         price,
         pages
     }
-    let result = await contenedor.save(product);
+    let result = await contenedor.save(products);
     res.send({status:"success",payload:result})
 })
 router.get('/items/:id', async (request, response) => {
@@ -23,9 +23,9 @@ router.get('/items/:id', async (request, response) => {
 })
 
 
-router.get('/products', async (req, res) => {
+router.get('/', async (req, res) => {
     const products = await contenedor.getAll();
-    res.send({products})
+    res.render("products", products)
 })
 
 router.delete('/:id', async (request, response) => {

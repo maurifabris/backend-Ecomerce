@@ -1,5 +1,5 @@
 
-const form = document.getElementById('productfomr')
+const form = document.getElementById('products')
 
 form.addEventListener('submit', e=>{
     e.preventDefault();

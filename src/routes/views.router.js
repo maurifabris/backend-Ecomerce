@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Contenedor from "../../Contenedor.js";
+import { ExpressHandlebars } from "express-handlebars";
 
 const productServices = new Contenedor()
 const router = Router()
@@ -9,9 +10,8 @@ router.get('/',(req,res)=>{
 })
 
 router.get('/products',async (req,res)=>{
-    const products = await productServices.getAll();
+    let products = await productServices.getAll();
     res.render('products',{
-        name:"Sol",
         products
     });
    
