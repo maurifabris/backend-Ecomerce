@@ -1,9 +1,9 @@
 import { Router } from "express";
-import Contenedor from "../../Contenedor.js";
+import BookManager from "../mannagers/booksmanager.js"
 import uploader from "../services/upload.js";
 
 const router = Router()
-const contenedor = new Contenedor()
+const contenedor = new BookManager()
 
 router.post('/',async(req,res)=>{
     const {name,autor,price,pages} = req.body;
@@ -16,6 +16,8 @@ router.post('/',async(req,res)=>{
     let result = await contenedor.save(products);
     res.send({status:"success",payload:result})
 })
+
+
 router.get('/items/:id', async (request, response) => {
     const id = request.params.id
     let result = await contenedor.getById(id)
@@ -43,4 +45,4 @@ router.put('/:id', async (request, response) => {
 })
 
 
-export default router
+export default router2

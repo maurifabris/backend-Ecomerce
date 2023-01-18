@@ -1,49 +1,8 @@
 [
   {
-    "name": "Juego De Tronos",
-    "price": 50,
     "id": 1
   },
   {
-    "name": "Harry Potter",
-    "price": 40,
-    "autor": "j.k Rowling",
-    "pages": 250,
     "id": 2
-  },
-  {
-    "name": "Juramentada",
-    "price": 35,
-    "autor": "Brandon Sanderson",
-    "pages": 1300,
-    "id": 4
-  },
-  {
-    "name": "El ojo del mundo",
-    "autor": "Robert Jordan",
-    "pages": "800",
-    "price": "90",
-    "id": 6
-  },
-  {
-    "name": "La Gran Cacería",
-    "autor": "Robert Jordan",
-    "pages": "800",
-    "price": "800",
-    "id": 5
-  },
-  {
-    "name": "La Gran Cacería",
-    "autor": "Robert Jordan",
-    "pages": "800",
-    "price": "800",
-    "id": 6
-  },
-  {
-    "name": "El Despertar De Los Heroes",
-    "autor": "Robert Jordan",
-    "pages": "800",
-    "price": "800",
-    "id": 7
   }
 ]
