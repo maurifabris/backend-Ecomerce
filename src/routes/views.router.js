@@ -1,6 +1,7 @@
 import { Router } from "express";
 import Contenedor from "../../Contenedor.js";
 import { ExpressHandlebars } from "express-handlebars";
+import session from "express-session";
 
 const productServices = new Contenedor()
 const routerViews = Router()
@@ -23,6 +24,10 @@ routerViews.get('/products',async (req,res)=>{
 
 routerViews.get("/",(req,res)=>{
     res.render("register")
+})
+
+routerViews.get('/profile',(req,res)=>{
+    res.render('profile',{user:req.session.user})
 })
 
 

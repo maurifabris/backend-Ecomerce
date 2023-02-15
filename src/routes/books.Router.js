@@ -1,68 +1,44 @@
-
 import { Router } from "express";
 import Contenedor from "../daos/connection.js";
-import cookieParser from "cookie-parser";
-import session from "express-session";
-import userModel from "../models/userModel.js";
+import passport from "passport";
+
+
 
 const router = Router();
 const booksService = Contenedor
 
-router.get('/pr', async(req,res)=>{
+
+
+router.post('/',passport.authenticate('register', {failureRedirect:"/api/sessions/failedregister"}), async(req,res)=>{
+    const user = req.user;
+    res.send({status:"success", payload: user._id})
+})
+
+router.get('/failedregister',(req,res)=>{
+    console.log("passport failed")
+    res.status(500).send({status:"error", error:"error of passport"})
+})
+
+router.post('/login', passport.authenticate('login'),async(req,res)=>{
     req.session.user = {
-        name:"mauri"
+        email: req.user.email,
+        first_name: req.user.first_name,
+        last_name: req.user.last_name
     }
-    res.send("hola")
+    console.log(req.user.email)
+    res.send({status:"success", message:"Logued"})
 })
 
-router.post('/',async(req,res)=>{
-    const {first_name,last_name,email,password} = req.body;
-    if(!first_name || !last_name || !email || !password) return res.status(400).send({status:"error",error:"valores incorrectos"})
-    const exist = await userModel.findOne({email});
-    if(exist) return res.status(400).send({status:"error",error:"el usuario ya existe"})
-    const user = {
-        first_name,
-        last_name,
-        email,
-        password
+router.get('/profile', async(req,res)=>{
+    req.user = {
+        email: req.user.email,
+        first_name: req.user.first_name,
+        last_name: req.user.last_name
     }
-    const result = await userModel.create(user)
-    res.send({status:"success",payload:result._id})
-})
-
-router.post('/login',async(req,res)=>{
-    const {email,password} = req.body;
-    if(!email || !password) return res.status(400).send({status:error, error:"faltan datos"})
-    const user = await userModel.findOne({email, password})
-    if(!user) return  res.status(400).send({status:"error", error:"el ususario no existe"}) 
-    req.session.user = {
-        name: `${user.first_name} ${user.last_name}`,
-        role: user.role,
-        email: user.email
-    }
-    res.send({status:"success", message:"logueado"})
+    console.log(user)
 })
 
 
-// router.get('/',(req,res)=>{
-//     const { email , password } = req.body
-//     if(email === "correo@gmail.com" && password === "123"){
-//         const user = {
-//             name:"mauri",
-//             last_name:"fabris",
-//             email:"correo@gmail.com",
-//             role:"client",
-//             password
-//         }
-//         req.session.user = {
-//             name: `${user.name} ${user.last_name}`,
-//             role:"client"
-//         }
-//         res.send({status:"success", message:"salio bien"})
-//     } else {
-//     res.send({status:"error", message:"contraseña incorrecta"})
-//     }
-// })
 
 router.get("/all",async(req,res)=>{
     let products = await booksService.getAll()

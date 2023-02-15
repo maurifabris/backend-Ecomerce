@@ -7,6 +7,9 @@ import Booksrouter from './routes/books.Router.js';
 import session from 'express-session';
 import store from "session-file-store"
 import MongoStore from 'connect-mongo';
+import passport from 'passport';
+import initializePassport from './config/passportConfig.js';
+
 
 const app = express()
 const PORT = process.env.PORT || 8080;
@@ -31,6 +34,10 @@ app.use(session({
     resave:false,
     saveUninitialized:false
 }))
+initializePassport()
+app.use(passport.initialize());
+app.use(passport.session())
+
 //app.use(express.urlencoded({express:true}))
 
 
