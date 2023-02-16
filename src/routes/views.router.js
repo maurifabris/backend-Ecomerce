@@ -27,7 +27,10 @@ routerViews.get("/",(req,res)=>{
 })
 
 routerViews.get('/profile',(req,res)=>{
-    res.render('profile',{user:req.session.user})
+    if(user){    res.render('profile',{user:req.session.user})
+    } else {
+        res.send({status:"error", error:"You need log"})
+}
 })
 
 

@@ -1,11 +1,13 @@
+import { config } from "dotenv";
 import mongoose from "mongoose"
+import dotenv from "../config/dotenvConfig.js";
 import booksModel from "../models/models.js"
-
+import configdotenv from "../config/dotenvConfig.js";
 
 mongoose.set('strictQuery',false);
 
 
-const connection = mongoose.connect("mongodb+srv://prueba:123@cluster0.0v1r9fd.mongodb.net/products?retryWrites=true&w=majority", err =>{
+const connection = mongoose.connect(`mongodb+srv://prueba:${configdotenv.mongo.Password}@cluster0.0v1r9fd.mongodb.net/products?retryWrites=true&w=majority`, err =>{
     if(err){console.log(err)
     } else {
         console.log("Connected :D")

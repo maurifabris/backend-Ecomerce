@@ -9,6 +9,8 @@ import store from "session-file-store"
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
 import initializePassport from './config/passportConfig.js';
+import { config } from 'dotenv';
+import configdotenv from "./config/dotenvConfig.js"
 
 
 const app = express()
@@ -47,3 +49,4 @@ app.use("/",routerViews)
 
 
 
+console.log(configdotenv.mongo.Password)
