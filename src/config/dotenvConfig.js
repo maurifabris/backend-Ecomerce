@@ -1,15 +1,19 @@
 import dotenv from 'dotenv';
 
-const mode = process.argv.slice(2)[0];
+
+
+
+const mode = process.argv.slice(2)[0]
+console.log(mode)
 
 dotenv.config({
-    path:mode==="PRODUCTION"
+    path:mode=="PRODUCTION"? '.envProduction' : '.envDevelopment'
 });
 
-const configdotenv = {
+const config = {
     mongo: {
-        Password : process.env.MONGO_PASSWORD || 'epa'
+        password : process.env.MONGO_PASSWORD   
     }
 }
 
-export default configdotenv
+export default config

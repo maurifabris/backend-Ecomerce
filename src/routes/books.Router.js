@@ -7,7 +7,10 @@ import passport from "passport";
 const router = Router();
 const booksService = Contenedor
 
-
+router.get('/ejemplo', async(req, res)=>{
+    console.log("ejemplo")
+    res.send(`peticion atendida por ${process.pid}`)
+})
 
 router.post('/',passport.authenticate('register', {failureRedirect:"/api/sessions/failedregister"}), async(req,res)=>{
     const user = req.user;

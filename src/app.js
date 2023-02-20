@@ -50,3 +50,4 @@ app.use("/",routerViews)
 
 
 console.log(configdotenv.mongo.Password)
+console.log(process.argv)
