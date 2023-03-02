@@ -1,16 +1,18 @@
 import { Router } from "express";
 import { ExpressHandlebars } from "express-handlebars";
 import session from "express-session";
-import Contenedor from "../daos/connection.js";
+import { service } from "./books.Router.js";
 
-const booksService = Contenedor
+
+const booksService = service()
 const routerViews = Router()
 
 // views routes
 
-routerViews.get('/all',(req,res)=>{
-    res.render()
-})
+routerViews.get('/all', async (req, res) => {
+    const products = await booksService.getAll();
+    res.render('products', { products });
+  });
 
 routerViews.get('/addBook',(req,res)=>{
     res.render('form')

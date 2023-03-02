@@ -6,11 +6,18 @@ import config from "../config/dotenvConfig.js";
 import ContenedorFS from "../daos/booksmanager.js";
 import session from "express-session";
 
-const router = Router();
 
+//  ---> to use some endpoints you need to create a user by changing your role from mongodb! ///
+
+
+
+
+
+const router = Router();
+  // you can run whit "DEVELOPMENT" for use filesystem or "PRODUCTION" for use mongodb
 let booksService
 console.log(config.mongo.base)
-let service = () =>{
+export let service = () =>{
     if (config.mongo.base == "FS") {
         return  new ContenedorFS()
     } 
@@ -21,11 +28,6 @@ let service = () =>{
 
 booksService = service();
 
-
-router.get('/ejemplo', async(req, res)=>{
-    console.log("ejemplo")
-    res.send(`peticion atendida por ${process.pid}`)
-})
 
 //route to register whit passport validation 
 
@@ -88,7 +90,7 @@ router.post('/addBook', async (req, res) => {
     const book = req.body;
     const user = req.session.user;
     if(user.role != "admin"){
-        throw new Error('Este es un mensaje de error');
+        res.status(403).send('Only for admins');
     }
     if (book.name && book.autor && book.pages && book.price) {
         console.log(JSON.stringify(req.body));
@@ -99,7 +101,10 @@ router.post('/addBook', async (req, res) => {
 
 // delete by id
 router.delete("/delete", async (req, res) => {
-
+    const user = req.session.user;
+    if(user.role != "admin"){
+        res.status(403).send('Only for admins');
+    }
     const id = req.body.id;
     const result = await booksService.deleteById(id);
     console.log(`/////// ${id}`)

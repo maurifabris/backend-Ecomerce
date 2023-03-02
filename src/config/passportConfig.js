@@ -9,7 +9,7 @@ import { createHash, validatePassword } from "../utils.js";
 const LocalStrategy = local.Strategy;
 
 const initializePassport = () => {
-
+    // this code is for make an registerlogic and hash password
     passport.use('register', new LocalStrategy({
         passReqToCallback: true,
         usernameField: 'email'
@@ -41,7 +41,7 @@ const initializePassport = () => {
             done(error);
         }
     }))
-
+    //this is for make login and save in session
     passport.use('login', new LocalStrategy({usernameField:'email'}, async (email, password, done)=>{
         try {
             if(!email) return done(null, false,{message:"Incomplete values"})
