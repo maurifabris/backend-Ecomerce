@@ -11,6 +11,8 @@ import passport from 'passport';
 import initializePassport from './config/passportConfig.js';
 import { config } from 'dotenv';
 import configdotenv from "./config/dotenvConfig.js"
+import bodyParser from 'body-parser'
+
 
 
 const app = express()
@@ -23,14 +25,17 @@ app.engine('handlebars', handlebars.engine())
 app.set('views',__dirname+"/views")
 app.set('view engine', 'handlebars')
 
-
+// ---- middlewares ----
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.static(__dirname+'/public'))
 app.use(express.json())
 app.use(cookieParser())
 app.use(session({
     store: MongoStore.create({
         mongoUrl:'mongodb+srv://prueba:123@cluster0.0v1r9fd.mongodb.net/basesessions?retryWrites=true&w=majority',
-        ttl: 25
+        ttl: 50000000,
+        collection: 'sessions'
     }),
     secret:'sessionEcommerce',
     resave:false,
@@ -40,8 +45,7 @@ initializePassport()
 app.use(passport.initialize());
 app.use(passport.session())
 
-//app.use(express.urlencoded({express:true}))
-
+// routers
 
 app.use("/api/",Booksrouter)
 app.use("/",routerViews)
@@ -49,5 +53,5 @@ app.use("/",routerViews)
 
 
 
-console.log(configdotenv.mongo.Password)
+console.log(configdotenv.mongo.password)
 console.log(process.argv)

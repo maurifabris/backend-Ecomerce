@@ -1,48 +1,57 @@
 import mongoose from "mongoose"
 import booksModel from "../models/models.js"
-import config2 from "../config/dotenvConfig.js";
+import config from "../config/dotenvConfig.js";
 
 
 mongoose.set('strictQuery',false);
 
-console.log(config2)
+console.log(`${config.mongo.password}//////////////////`)
 
-
-const connection = mongoose.connect(`mongodb+srv://prueba:${config2.mongo.password}@cluster0.0v1r9fd.mongodb.net/products?retryWrites=true&w=majority`, err =>{
+const connection = mongoose.connect(`mongodb+srv://prueba:${config.mongo.password}@cluster0.0v1r9fd.mongodb.net/products?retryWrites=true&w=majority`, err =>{
     if(err){console.log(err)
     } else {
-        console.log("Connected :D")
+        console.log("Connected to mongo :D")
     }
 })
 
-const booksToInsert = [
-    {name:"El Nombre Del Viento", price:4000, stock:50},
-    {name:"El Temos De Un Hombre Sabio", price:4000, stock:100}
-]
 
 class ContenedorMongo {
     constructor(){ 
-    const save = async({prod}) =>{
-        let insertToCreate = await booksModel.createOne({prod})
-        console.log(prod)
-    }
-    const insertMany = async() => {
+        // this will save a product
+        this.save = async (book) => {
+            try {
+              const insertToCreate = await booksModel.create(book);
+            } catch (error) {
+              console.error(error);
+            }
+          };
+          
+    // this is for save meny products
+    this.insertMany = async() => {
         let insertados = await booksModel.insertMany(booksToInsert)
         console.log(insertados)
     } 
-    const getAll =async()=>{
+    // return all products
+    this.getAll =async()=>{
         let products = await booksModel.find({})
         console.log(products)
     }
-    const deleteMany = async(prod)=> {
+    this.getById =async(id)=>{
+        let products = await booksModel.find(id)
+        console.log(products)
+    }
+    // delete many products
+    this.deleteMany = async(prod)=> {
         let howToDelete = await booksModel.deleteOne(prod)
         console.log(howToDelete)
     }
-    const deleteById = async(prod)=>{
-        let howToDelete = await booksModel.deleteOne(prod)
-        console.log(prod)
+    // delete products by id
+    this.deleteById = async(id)=>{
+        let howToDelete = await booksModel.deleteOne({ _id: id })
+        console.log(howToDelete)
     }
-    const update = async(productUpdate, id) => { 
+    // update a product
+    this.update = async(productUpdate, id) => { 
         await this.booksModel.updateOne({_id: id}, {$set: {...productUpdate}})
         console.log(productUpdate)
     }

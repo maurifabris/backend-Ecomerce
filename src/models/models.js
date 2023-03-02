@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
 
+
+// this file is for create a model to save data in mongoose
+
+
 const collection = 'products';
 const schema = new mongoose.Schema({
     name: {
@@ -12,7 +16,7 @@ const schema = new mongoose.Schema({
     },
     price: {
         type: Number,
-        require: false
+        require: true
     }
 })
 

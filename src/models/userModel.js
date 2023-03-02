@@ -2,6 +2,8 @@ import mongoose from "mongoose"
 
 const collectionUsers = 'users'
 
+// this file is for save a users in mongoose and mongo atlas
+
 const schema = new mongoose.Schema({
     first_name:{
         type:String,

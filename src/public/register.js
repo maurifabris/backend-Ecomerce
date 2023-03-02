@@ -1,5 +1,8 @@
 const form = document.getElementById('registro');
 
+// Form to register
+
+
 form.addEventListener('submit',evt=>{
     evt.preventDefault();
     const data = new FormData(form);
@@ -13,3 +16,5 @@ form.addEventListener('submit',evt=>{
         }
     }).then(result=>result.json()).then(json=>console.log(json))
 })
+
+

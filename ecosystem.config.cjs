@@ -1,31 +1,23 @@
 module.exports = {
     apps:[
         {
-            name:"Proyect Node 1",
-            script: "./src/app.js",
+            name:"ProyectNode1",
+            script: "src/app.js",
             env:{
-                PORT:8081
-            }
-            
-        },
-        {
-            name:"Proyect Node 1",
-            script: "./src/app.js",
-            env:{
-                PORT:8082
-            }
-            
+                PORT:8080
+            },
+            args:"prueba",
+            node_args:"--expose-gc"
         },
         {
             name:"test",
-            script:"./src/app.js",
-            watch:true,
+            script:"src/app.js",
             env:{
-                PORT:8083
+                PORT:8081
             },
             exec_mode:"cluster",
-            instances: 4,
-            node_args: "--harmony"
+            instances: 2,
         },
     ]
 }
+

@@ -1,13 +1,23 @@
 import { Router } from "express";
-import Contenedor from "../../Contenedor.js";
 import { ExpressHandlebars } from "express-handlebars";
 import session from "express-session";
+import Contenedor from "../daos/connection.js";
 
-const productServices = new Contenedor()
+const booksService = Contenedor
 const routerViews = Router()
 
-routerViews.get('/book',(req,res)=>{
+// views routes
+
+routerViews.get('/all',(req,res)=>{
+    res.render()
+})
+
+routerViews.get('/addBook',(req,res)=>{
     res.render('form')
+})
+
+routerViews.get('/delete',(req,res)=>{
+    res.render('formDelete')
 })
 
 routerViews.get('/login',(req,res)=>{
@@ -15,7 +25,7 @@ routerViews.get('/login',(req,res)=>{
 })
 
 routerViews.get('/products',async (req,res)=>{
-    let products = await productServices.getAll();
+    let products = await booksService.getAll();
     res.render('products',{
         products
     });
@@ -25,9 +35,9 @@ routerViews.get('/products',async (req,res)=>{
 routerViews.get("/",(req,res)=>{
     res.render("register")
 })
-
+// el profile y user solo funciona en production
 routerViews.get('/profile',(req,res)=>{
-    if(user){    res.render('profile',{user:req.session.user})
+    if(req.session.user){res.render('profile',{user:req.session.user})
     } else {
         res.send({status:"error", error:"You need log"})
 }

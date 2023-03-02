@@ -22,6 +22,7 @@ const initializePassport = () => {
             if (!first_name || !last_name) return done(null, false,{message:"Incomplete values"})
 
             const hashedPassword = await createHash(password)
+            const role = "user"
             const exist = await userModel.findOne({
                 email
             });
@@ -31,7 +32,8 @@ const initializePassport = () => {
                 first_name,
                 last_name,
                 email,
-                password: hashedPassword
+                password: hashedPassword,
+                role: "user",
             }
             const result = await userModel.create(user);
             done(null, result)

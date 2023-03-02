@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Delete Product</title>
+  </head>
+  <body>
+    <h1>Delete Product</h1>
+    <form id="deleteProductForm">
+      <label for="productId">Product ID:</label>
+      <input type="text" id="productId" name="id"><br><br>
+      <input type="submit" value="Delete Product">
+    </form>
+    <div id="result"></div>
+
+    <script>
+      const deleteProductForm = document.querySelector('#deleteProductForm');
+      const resultDiv = document.querySelector('#result');
+
+      deleteProductForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const id = document.querySelector('#productId').value;
+
+        const response = await fetch('/api/delete', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id })
+        });
+
+        const data = await response.json();
+
+        resultDiv.innerHTML = `<p>${data.message}</p>`;
+      });
+    </script>
+  </body>
+</html>
